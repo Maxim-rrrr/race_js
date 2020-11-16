@@ -136,9 +136,33 @@ setInterval(() => {
 
   distanses.forEach(d => {
     if (d < 0) {
-      car1.restart()
+      // car1.restart()
     }
   })
   
   console.log(distanses);
 }, 10)
+
+let totalScore = 0
+let scorePoint = []
+let score = 0
+// Начисление очков
+setInterval(() => {
+  coordinates.forEach((coor, index) => {
+    if (!scorePoint.includes(coor)) {
+      if (Math.abs(coor[0] - car1.position.x) < roadWidth / 2 && Math.abs(coor[1] - car1.position.y) < roadWidth / 2) {
+        scorePoint.push(coor)
+        score++
+        if (index === coordinates.length - 1 && score > 1) {
+          totalScore += score
+          score = 0
+          scorePoint = []
+        }
+      }
+    }
+
+    
+  })
+  console.log(score + totalScore);
+  // console.log(score.length + totalScore);
+}, 10);
