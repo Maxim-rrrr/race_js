@@ -9,6 +9,8 @@ let Car = function (x = 100, y = 100) {
     space: false
   }
 
+  
+
   this.position = {
     x: x,
     y: y
@@ -16,61 +18,27 @@ let Car = function (x = 100, y = 100) {
 
   this.rotation = 40
   this.speed = 0
+  this.rudder = 0
+  this.pressUp = 0
 
   this.render = (car) => {
-
-    if (this.keyDown.left) {
-  
-      this.position.y -= this.speed / 25 * (Math.cos(((this.rotation % 360) + this.speed * 0.5) * (Math.PI / 180)))
-      this.position.x += this.speed / 25 * (Math.sin(((this.rotation % 360) + this.speed * 0.5) * (Math.PI / 180)))
-  
-      this.rotation -= 0.03 * this.speed
-    } else if (this.keyDown.right) {  
-      this.position.y -= this.speed / 25 * (Math.cos(((this.rotation % 360) - this.speed * 0.5) * (Math.PI / 180)))
-      this.position.x += this.speed / 25 * (Math.sin(((this.rotation % 360) - this.speed * 0.5) * (Math.PI / 180)))
-  
-      this.rotation += 0.03 * this.speed
-    } else {
-      this.position.y -= this.speed / 25 * (Math.cos(this.rotation * (Math.PI / 180)))
-      this.position.x += this.speed / 25 * (Math.sin(this.rotation * (Math.PI / 180)))
+    if (this.speed < 40 * this.pressUp) {
+      this.speed += 2 * this.pressUp
+    } else if (this.speed > 40 * this.pressUp) {
+      this.speed -= 2
     }
+
+    this.rotation += 0.2 * this.rudder * this.speed
+
+    this.position.y -= this.speed / 3 * (Math.cos((this.rotation % 360) * (Math.PI / 180)))
+    this.position.x += this.speed / 3 * (Math.sin((this.rotation % 360) * (Math.PI / 180)))
 
     car.style.top = this.position.y + 'px'
     car.style.left = this.position.x + 'px'
     car.style.transform = `rotate(${this.rotation}deg)`
   }
+  
 
-  this.checkBtnDown = () => {
-    if (this.keyDown.space) {
-      if (this.speed < 0) {
-        this.speed += 4
-      } else if (this.speed > 0) {
-        this.speed -= 4
-      }
-    } else if (this.keyDown.up) {
-      if (this.speed < 25) {
-        this.speed += 1
-      } 
-  
-      if (this.speed < 0) {
-        this.speed += 5
-      }
-    } else if (this.keyDown.bottom) {
-      if (this.speed > -25) {
-        this.speed -= 1
-      }
-      if (this.speed > 0) {
-        this.speed -= 5
-      }
-    } else {
-      if (this.speed < 0) {
-        this.speed += 1
-      } else if (this.speed > 0) {
-        this.speed -= 1
-      }
-    }
-  }
-  
   this.checkOut = (coordinates) => {
     
     let x0 = this.position.x, y0 = this.position.y
