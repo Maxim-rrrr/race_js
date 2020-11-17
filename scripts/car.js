@@ -14,7 +14,7 @@ let Car = function (x = 100, y = 100) {
     y: y
   }
 
-  this.rotation = 60
+  this.rotation = 40
   this.speed = 0
 
   this.render = (car) => {
@@ -163,7 +163,7 @@ let Car = function (x = 100, y = 100) {
   this.restart = () => {
     this.position.x = x
     this.position.y = y
-    this.rotation = 60
+    this.rotation = 40
     this.speed = 0
   }
 }
