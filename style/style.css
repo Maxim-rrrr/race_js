@@ -36,9 +36,37 @@ html {
   display: inline-block;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100px;
   background-color: red;
   border-radius: 50%;
   height: 10px;
   width: 10px;
+}
+
+.score {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 40px;
+}
+
+.panel {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 40px;
+}
+
+.auto {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  font-size: 40px;
+}
+
+.generation {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  font-size: 40px;
 }

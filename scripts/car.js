@@ -14,25 +14,25 @@ let Car = function (x = 100, y = 100) {
     y: y
   }
 
-  this.rotation = 45
+  this.rotation = 60
   this.speed = 0
 
   this.render = (car) => {
 
     if (this.keyDown.left) {
   
-      this.position.y -= this.speed / 30 * (Math.cos(((this.rotation % 360) + this.speed * 0.5) * (Math.PI / 180)))
-      this.position.x += this.speed / 30 * (Math.sin(((this.rotation % 360) + this.speed * 0.5) * (Math.PI / 180)))
+      this.position.y -= this.speed / 25 * (Math.cos(((this.rotation % 360) + this.speed * 0.5) * (Math.PI / 180)))
+      this.position.x += this.speed / 25 * (Math.sin(((this.rotation % 360) + this.speed * 0.5) * (Math.PI / 180)))
   
       this.rotation -= 0.03 * this.speed
     } else if (this.keyDown.right) {  
-      this.position.y -= this.speed / 30 * (Math.cos(((this.rotation % 360) - this.speed * 0.5) * (Math.PI / 180)))
-      this.position.x += this.speed / 30 * (Math.sin(((this.rotation % 360) - this.speed * 0.5) * (Math.PI / 180)))
+      this.position.y -= this.speed / 25 * (Math.cos(((this.rotation % 360) - this.speed * 0.5) * (Math.PI / 180)))
+      this.position.x += this.speed / 25 * (Math.sin(((this.rotation % 360) - this.speed * 0.5) * (Math.PI / 180)))
   
       this.rotation += 0.03 * this.speed
     } else {
-      this.position.y -= this.speed / 30 * (Math.cos(this.rotation * (Math.PI / 180)))
-      this.position.x += this.speed / 30 * (Math.sin(this.rotation * (Math.PI / 180)))
+      this.position.y -= this.speed / 25 * (Math.cos(this.rotation * (Math.PI / 180)))
+      this.position.x += this.speed / 25 * (Math.sin(this.rotation * (Math.PI / 180)))
     }
 
     car.style.top = this.position.y + 'px'
@@ -48,7 +48,7 @@ let Car = function (x = 100, y = 100) {
         this.speed -= 4
       }
     } else if (this.keyDown.up) {
-      if (this.speed < 30) {
+      if (this.speed < 25) {
         this.speed += 1
       } 
   
@@ -56,7 +56,7 @@ let Car = function (x = 100, y = 100) {
         this.speed += 5
       }
     } else if (this.keyDown.bottom) {
-      if (this.speed > -30) {
+      if (this.speed > -25) {
         this.speed -= 1
       }
       if (this.speed > 0) {
@@ -152,14 +152,18 @@ let Car = function (x = 100, y = 100) {
       }
     }
     
+    d -= 20
+    if (d > 100) {
+      d = 100
+    }
 
-    return d - 20
+    return d
   }
 
   this.restart = () => {
     this.position.x = x
     this.position.y = y
-    this.rotation = 45
+    this.rotation = 60
     this.speed = 0
   }
 }
