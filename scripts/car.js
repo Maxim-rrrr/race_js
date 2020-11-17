@@ -28,7 +28,7 @@ let Car = function (x = 100, y = 100) {
       this.speed -= 2
     }
 
-    this.rotation += 0.2 * this.rudder * this.speed
+    this.rotation += 0.25 * this.rudder * this.speed
 
     this.position.y -= this.speed / 3 * (Math.cos((this.rotation % 360) * (Math.PI / 180)))
     this.position.x += this.speed / 3 * (Math.sin((this.rotation % 360) * (Math.PI / 180)))
